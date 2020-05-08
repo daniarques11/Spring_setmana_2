@@ -29,6 +29,9 @@ public class AgendaController {
 	@RequestMapping("/contacte/{clau}")
 	@ResponseBody
 	public Persona contacte(@PathVariable String clau) {
+		if (!agenda.containsId(clau)) {
+			throw new ContacteNotFound();
+		}
 		return agenda.recupera(clau);
 	}
 	

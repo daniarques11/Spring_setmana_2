@@ -30,4 +30,8 @@ public class AgendaService {
 	public int nombreContactes() {
 		return bbdd.size();
 	}
+	
+	public boolean containsId(String id) {
+		return bbdd.containsKey(id);
+	}
 }
