@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -35,4 +36,10 @@ public class AgendaController {
 		return agenda.recupera(clau);
 	}
 	
+	@RequestMapping(path="/afegir", method=RequestMethod.POST)
+	@ResponseBody
+	public String afegir(String id, String nom, String telefon) {
+		agenda.inserta(id, nom, telefon);
+		return "S'ha inserit correctament el contacte amb id: " + agenda.recupera(id).getClau() + ", nom: " + agenda.recupera(id).getNom() + " i telefon: " + agenda.recupera(id).getTelefon();
+	}
 }
